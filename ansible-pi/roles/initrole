@@ -14,6 +14,6 @@ meta_file="${role}/meta/main.yml"
 
 ansible-galaxy init "${role}"
 sed -i "s/your name/${initials}/" ${meta_file}
-sed -i "s/your description/Competec Server role ${role}/" ${meta_file}
-sed -i 's/your company (optional)/Competec Service AG/' ${meta_file}
+sed -i "s/your description/${role}/" ${meta_file}
+sed -i 's/your company (optional)//' ${meta_file}
 sed -i 's/license (GPLv2, CC-BY, etc)/MIT/' ${meta_file}
