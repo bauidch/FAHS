@@ -4,5 +4,6 @@
 not_for_git/*
 inventory/vagrantbox/*
 roles/*/.kitchen/*
+roles/initrole
 inventory/_testing/*
 playbooks/_testing/*
