@@ -1,0 +1,8 @@
+*.retry
+.idea/
+*.pyc
+not_for_git/*
+inventory/vagrantbox/*
+roles/*/.kitchen/*
+inventory/_testing/*
+playbooks/_testing/*

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ $1 == '' || $2 == '' ]]; then
+    printf 'argument missing\n'
+    printf 'arg1: rolename\n'
+    printf 'arg2: your initials\n'
+    exit 1
+fi
+
+role=${1}
+initials=${2}
+
+meta_file="${role}/meta/main.yml"
+
+ansible-galaxy init "${role}"
+sed -i "s/your name/${initials}/" ${meta_file}
+sed -i "s/your description/Competec Server role ${role}/" ${meta_file}
+sed -i 's/your company (optional)/Competec Service AG/' ${meta_file}
+sed -i 's/license (GPLv2, CC-BY, etc)/MIT/' ${meta_file}
