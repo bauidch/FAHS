@@ -1,0 +1,6 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/
+
+* 1 * * * root /var/www/fahs/scripts/hydro_killandstart.sh >/dev/null 2>&1
+* 6,12,18 * * * root /var/www/fahs/scripts/take_picture.sh >/dev/null 2>&1

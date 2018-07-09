@@ -1,5 +1,0 @@
-SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-HOME=/
-
-* 1 * * * root /var/www/hypropo/scripts/hydro_killandstart.sh >/dev/null 2>&1
