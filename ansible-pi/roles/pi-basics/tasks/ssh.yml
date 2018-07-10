@@ -1,0 +1,34 @@
+---
+- name: ensure authorized_key files exist with correct permissions
+  file:
+    path: "/home/{{ item }}/.ssh/authorized_keys"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0600
+    state: touch
+  with_items:
+    - baui
+  tags:
+    - keys
+    - ssh
+
+- name: deploy ssh-keys
+  blockinfile:
+    block: "{{ lookup('file', 'files/{{ item }}.authorized_keys') }}"
+    dest: "/home/{{ item }}/.ssh/authorized_keys"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - DO NOT EDIT - provided by role: {{role_name}}, task ssh"
+  with_items:
+    - baui
+  tags:
+    - keys
+    - ssh
+
+- name: deploy ssh-keys to root
+  copy:
+    src: files/root.authorized_keys
+    dest: /root/.ssh/authorized_keys
+    owner: root
+    group: root
+    mode: "0600"
+  tags:
+    - root_user

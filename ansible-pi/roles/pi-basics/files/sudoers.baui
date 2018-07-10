@@ -1,0 +1,2 @@
+# sudoers entry granting root access to the user baui
+baui     ALL=(ALL) NOPASSWD: ALL

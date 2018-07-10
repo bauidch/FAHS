@@ -1,0 +1,62 @@
+---
+# tasks file for ferm
+- apt:
+    name: iptables-services
+    state: installed
+
+- name: check if firewalld is installed
+  stat:
+    path: /etc/firewalld
+  register: firewalld_stat
+
+- name: disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: false
+  when: firewalld_stat.stat.isdir is defined and firewalld_stat.stat.isdir
+  ignore_errors: true # Ignore if firewalld is missing
+
+- name: install ferm for firewalling
+  apt:
+    name: ferm
+    state: installed
+
+- name: enable ferm for startup
+  service:
+    name: ferm
+    enabled: yes
+
+- name: copy initial ferm-config
+  template:
+    src: ferm.conf.j2
+    dest: /etc/ferm.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create ferm-folder in etc
+  file:
+    path: /etc/ferm.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy firewall configuration and start service
+  template:
+    src: default_ferm.conf.j2
+    dest: /etc/ferm.d/default.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: new_fermconfig
+
+- name: restart fermd to get new configuration active
+  service:
+    name: ferm
+    state: restarted
+  when: new_fermconfig is changed
+
+- name: Save iptables
+  shell: '/usr/libexec/iptables/iptables.init save'

@@ -1,0 +1,12 @@
+---
+- hosts: fahs-pi
+  become: true
+  roles:
+    - { role: pi-basics }
+    - { role: ferm }
+    - { role: influxdb }
+    - { role: grafana }
+    - { role: ino }
+    - { role: fahs-setup }
+
+

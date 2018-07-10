@@ -1,0 +1,27 @@
+{{ ansible_managed | comment }}
+
+table filter {
+    chain INPUT {
+        policy DROP;
+
+        # connection tracking
+        #mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+
+        # allow local connections
+        interface lo ACCEPT;
+
+        # respond to ping
+        proto icmp icmp-type echo-request ACCEPT;
+
+        # remote administration from the company network
+        proto tcp dport ssh ACCEPT;
+
+    }
+
+    # outgoing connections are not limited
+    chain OUTPUT policy ACCEPT;
+
+    # this is not a router
+    chain FORWARD policy DROP;
+}

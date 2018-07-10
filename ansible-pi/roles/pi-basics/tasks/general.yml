@@ -1,0 +1,30 @@
+---
+
+- name: Update apt packages
+  become: yes
+  apt:
+    upgrade: yes
+    update_cache: yes
+
+- name: Install base
+  sudo: true
+  apt:
+    name: {{ item }}
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+    force: yes
+  with_items:
+    - git
+    - vim
+    - curl
+    - htop
+    - openssh-server
+
+- name: Set the hostname
+  become: yes
+  command: hostnamectl set-hostname "{{ hostname }}"
+
+- name: Expand filesystem to fill disk
+  command: raspi-config --expand-rootfs
+  become: yes
