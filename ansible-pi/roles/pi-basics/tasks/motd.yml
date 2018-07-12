@@ -1,0 +1,4 @@
+---
+
+- name: Add motd
+  shell: 'echo -en "\033[1;34m>>> RaspberryPi <<<\n{{ ansible_fqdn }}\n\033[0m\n" > /etc/motd'

@@ -1,0 +1,4 @@
+---
+# tasks file for fahs-setup
+
+- include_tasks: ferm.yml

@@ -1,0 +1,22 @@
+---
+
+- name: Copy firewall configuration and start service
+  template:
+    src: fahs-setup_ferm.conf.j2
+    dest: /etc/ferm.d/fahs-setup.conf
+    owner: root
+    group: root
+    mode: 644
+  register: new_fermconfig
+
+- name: restart fermd to get new configuration active
+  service:
+    name: ferm
+    state: restarted
+  when: new_fermconfig is changed
+
+- name: Save iptables
+  shell: '/usr/libexec/iptables/iptables.init save'
+
+
+

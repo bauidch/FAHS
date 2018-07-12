@@ -1,0 +1,11 @@
+---
+
+- name: Copy cron
+  copy:
+    src: "../scripts/hydro.cron"
+    dest: "/etc/cron.d/hydro.cron"
+
+- name: Creat /var/www dir
+  file:
+    path: /var/www
+    state: directory

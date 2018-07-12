@@ -10,11 +10,11 @@
   with_items: "{{ locale_options }}"
 
 - name: Generate Locale
-  command: locale-gen de_Ch.UTF-8
+  command: locale-gen de_CH.UTF-8
 
 
 - name: Set Locale
-  command: update-locale LC_ALL=de_Ch.UTF-8 LANG=de_Ch.UTF-8
+  command: update-locale LC_ALL=de_CH.UTF-8 LANG=de_CH.UTF-8
 
 
 - name: set /etc/timezone
@@ -23,4 +23,7 @@
     dest: /etc/timezone
 
 - name: Switch keyboard layout to DE
-  lineinfile: dest=/etc/default/keyboard regexp=XKBLAYOUT line='XKBLAYOUT="de"'
+  lineinfile:
+    dest: /etc/default/keyboard
+    regexp: XKBLAYOUT
+    line: 'XKBLAYOUT="de_ch"'

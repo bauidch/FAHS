@@ -1,5 +1,9 @@
 ---
 # create users
+
+- name: Delete default pi user
+  shell: sudo deluser -remove-home pi
+
 - name: Add groups
   group:
     name: '{{ item }}'

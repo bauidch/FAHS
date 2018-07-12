@@ -1,0 +1,19 @@
+---
+# tasks file for influxdb
+
+- name: install InfluxDB
+  apt:
+    name: influxdb
+    state: latest
+
+- name: enable and start indluxdb
+  service:
+    name: influxdb
+    state: started
+    enabled: yes
+
+- name: Create stats database
+  influxdb_database:
+      hostname: "localhost"
+      database_name: "stats"
+      state: present

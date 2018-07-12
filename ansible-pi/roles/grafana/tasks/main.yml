@@ -1,0 +1,17 @@
+---
+# tasks file for grafana
+
+- name: install grafana
+  apt:
+    name: grafana
+    state: installed
+
+- name: install influxdb management plugin
+  shell: |
+    grafana-cli plugins install natel-influx-admin-panel
+
+- name: start and enable grafana
+  service:
+    name: grafana-server
+    state: started
+    enabled: true

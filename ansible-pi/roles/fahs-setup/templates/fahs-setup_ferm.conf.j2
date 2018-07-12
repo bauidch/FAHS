@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+table filter {
+    chain INPUT {
+        proto tcp dport (http https) ACCEPT;
+        proto tcp dport 3000 ACCEPT;
+        proto tcp dport (8083 8086) ACCEPT;
+    }
+}

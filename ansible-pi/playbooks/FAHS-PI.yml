@@ -6,7 +6,6 @@
     - { role: ferm }
     - { role: influxdb }
     - { role: grafana }
-    - { role: ino }
     - { role: fahs-setup }
 
 
