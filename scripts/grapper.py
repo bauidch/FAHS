@@ -47,4 +47,4 @@ while True:
                 r = requests.post(url, data=data)
             except:
                 print('Error to send data')
-    time.sleep(300)
+    time.sleep(200)
