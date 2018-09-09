@@ -1,6 +1,4 @@
-SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-HOME=/
+crontab -e
 
 0 1 * * * root /var/www/FAHS/scripts/hydro_killandstart.sh >/dev/null 2>&1
-0 6,12,18 * * * root /var/www/FAHS/scripts/take_picture.sh >/dev/null 2>&1
+0 6,12,15,18 * * * sh /var/www/FAHS/scripts/take_picture.sh >/var/log/fahs/webcam.log 2>&1
