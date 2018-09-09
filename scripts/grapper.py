@@ -41,7 +41,7 @@ while True:
             ec = numbers[1]
             ph = numbers[2]
             url = "http://localhost:8086/write?db=hydro"
-            data = ("hydroculture,host=hydroino01 temp=" + temp + ",ec=" + ec + ",ph=" + ph)
+            data = ("fahs,host=fahs01 temp=" + temp + ",ec=" + ec + ",ph=" + ph)
             print(data)
             try:
                 r = requests.post(url, data=data)
