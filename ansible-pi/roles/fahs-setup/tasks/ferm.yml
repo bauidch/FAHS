@@ -17,6 +17,3 @@
 
 - name: Save iptables
   shell: '/usr/libexec/iptables/iptables.init save'
-
-
-

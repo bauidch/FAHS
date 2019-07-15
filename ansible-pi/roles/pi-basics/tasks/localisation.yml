@@ -12,7 +12,6 @@
 - name: Generate Locale
   command: locale-gen de_CH.UTF-8
 
-
 - name: Set Locale
   command: update-locale LC_ALL=de_CH.UTF-8 LANG=de_CH.UTF-8
 

@@ -12,8 +12,12 @@ initials=${2}
 
 meta_file="${role}/meta/main.yml"
 
-ansible-galaxy init "${role}"
+molecule init role -r "${role}" -d docker
 sed -i "s/your name/${initials}/" ${meta_file}
 sed -i "s/your description/${role}/" ${meta_file}
-sed -i 's/your company (optional)//' ${meta_file}
+sed -i 's/your company (optional)/LBA Corp./' ${meta_file}
 sed -i 's/license (GPLv2, CC-BY, etc)/MIT/' ${meta_file}
+sed -i '/dependencies\: \[\]/d' ${meta_file}
+sed -i '/^$/d' ${meta_file}
+sed -i '/  #/d' ${meta_file}
+sed -i '/# /d' ${meta_file}

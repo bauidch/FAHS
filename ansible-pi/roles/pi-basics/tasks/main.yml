@@ -5,4 +5,3 @@
 - include_tasks: localisation.yml
 - include_tasks: users.yml
 - include_tasks: ssh.yml
-- include_tasks: wifi.yml
